@@ -55,7 +55,7 @@ export class AppComponent {
     let marker = new google.maps.Marker({
       position: location,
       map: this.map,
-      title: 'Got location!'
+      title: 'You ride is here'
     });
 
     marker.addListener('click', this.simpleMarkerHandler);
@@ -74,8 +74,6 @@ export class AppComponent {
   }
 
   showCustomMarker() {
-
-
     this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
 
     let location = new google.maps.LatLng(this.latitude, this.longitude);
@@ -86,8 +84,7 @@ export class AppComponent {
       position: location,
       map: this.map,
       icon: this.iconBase + this.selectedMarkerType,
-      title: 'Got location!'
+      title: 'You ride is here.'
     });
-
   }
 }

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "p01-google-maps", "p01-google-maps\p01-google-maps.csproj", "{3D4E3446-A7EA-4458-BC61-CF528DAC85E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D4E3446-A7EA-4458-BC61-CF528DAC85E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D4E3446-A7EA-4458-BC61-CF528DAC85E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D4E3446-A7EA-4458-BC61-CF528DAC85E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D4E3446-A7EA-4458-BC61-CF528DAC85E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A6FFACF6-B737-4611-89F5-4B5105443BE6}
+	EndGlobalSection
+EndGlobal
