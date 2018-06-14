@@ -12,7 +12,7 @@
       <button (click)="setMapType('satellite')" class="btn btn-danger">Satellite</button>
       <button (click)="setMapType('roadmap')" class="btn btn-warning">Road Map</button>
     </div>
-    <div class="col-md-5 col-sm-12 col-xs-12">
+    <div class="col-md-6 col-sm-12 col-xs-12">
       <form class="form-inline" #form="ngForm">
         <div class="form-group">
           <input type="text" class="form-control" name="latitude" [(ngModel)]="latitude" placeholder="Enter latitude" required>
@@ -24,19 +24,19 @@
 
       </form>
     </div>
-    <div class="col-md-4 col-sm-12 col-xs-12">
+    <div class="col-md-3 col-sm-12 col-xs-12">
       <label>Select Marker: </label>
       <select [(ngModel)]="selectedMarkerType" name="category">
         <option *ngFor="let marker of markerTypes" [value]="marker.value">{{marker.text}}</option>
       </select>
-      <button type="button" (click)="showCustomMarker()" class="btn btn-primary" [disabled]="form.invalid"> Custom Marker</button>
+      <button type="button" (click)="showCustomMarker()" class="btn btn-primary" [disabled]="form.invalid"> Marker</button>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
       <div class="text-center">
         <h3>
-          <div #gmap style="width:100%;height:400px"></div>
+          <div #gmap style="width:100%;height:600px"></div>
         </h3>
       </div>
     </div>
@@ -46,17 +46,17 @@
       <h3>
         <span class="label label-primary">Atiq Rahman</span>
       </h3>
-      <div class="row">
-        <div class="col-md-1">
-          <h4>
-            <a href="https://www.linkedin.com/in/atiq-cs/" target="_blank">LinkedIn</a>
-          </h4>
-        </div>
-        <div class="col-md-1">
-          <h4>
-            <a href="https://github.com/atiq-cs" target="_blank">GitHub</a>
-          </h4>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <h6>
+          <a href="https://www.linkedin.com/in/atiq-cs/" target="_blank">LinkedIn</a>
+        </h6>
+      </div>
+      <div class="col-md-1">
+        <h6>
+          <a href="https://github.com/atiq-cs" target="_blank">GitHub</a>
+        </h6>
       </div>
     </div>
   </footer>
