@@ -14,33 +14,32 @@ export class AppComponent {
   @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
 
-  latitude: any;
-  longitude: any;
-
-  iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+  latitude: number;
+  longitude: number;
 
   markerTypes = [
-    {
-      text: "Parking", value: "parking_lot_maps.png"
-    }
-    // ,
-    // {
-    //   text: "Library", value: "library_maps.png"
-    // },
-    // {
-    //   text: "Information", value: "info-i_maps.png"
-    // }
+    { text: "Parking", value: 0 },
+    { text: "Library", value: 1 },
+    { text: "Information", value: 2 },
+    { text: "Beach Flag", value: 3 },
+    { text: "Car", value: 4 },
   ];
 
-  selectedMarkerType: string = "parking_lot_maps.png";
+  selectedMarkerType: string;
+  markers: Array<google.maps.Marker>;
 
   ngOnInit() {
+    this.markers = [];
+    this.selectedMarkerType = '0';
+    this.latitude = 37.376272;
+    this.longitude = -121.849629;
     var mapProp = {
-      center: new google.maps.LatLng(37.376272, -121.849629),
+      center: new google.maps.LatLng(this.latitude, this.longitude),
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+    this.putMarker();
   }
 
   setMapType(mapTypeId: string) {
@@ -49,42 +48,45 @@ export class AppComponent {
 
   setCenter() {
     this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
+    this.putMarker();
+  }
 
-    let location = new google.maps.LatLng(this.latitude, this.longitude);
-
+  putMarker() {
     let marker = new google.maps.Marker({
-      position: location,
+      position: new google.maps.LatLng(this.latitude, this.longitude),
       map: this.map,
-      title: 'You ride is here'
+      icon: this.getMarkerIcon(),
+      title: 'You are here'
     });
-
-    marker.addListener('click', this.simpleMarkerHandler);
-
-    marker.addListener('click', () => {
-      this.markerHandler(marker);
-    });
+    this.markers.push(marker);
   }
 
-  simpleMarkerHandler() {
-    alert('Simple Component\'s function...');
+  clearMarkers() {
+    for (var i = 0; i < this.markers.length; i++) {
+      this.markers[i].setMap(null);
+    }
+    this.markers = [];
+    console.log('markers cleared');
   }
 
-  markerHandler(marker: google.maps.Marker) {
-    alert('Marker\'s Title: ' + marker.getTitle());
+  // get mark icon based on user input on the UI
+  getMarkerIcon(): string {
+    let iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+    // convert to int because UI always returns selectedMarkerType as string
+    switch (parseInt(this.selectedMarkerType)) {
+      case 0: return iconBase + 'parking_lot_maps.png';
+      case 1: return iconBase + "library_maps.png";
+      case 2: return iconBase + 'info-i_maps.png';
+      case 3: return 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+      case 4: return 'https://d30y9cdsu7xlg0.cloudfront.net/png/468-200.png';
+      default: return 'https://d30y9cdsu7xlg0.cloudfront.net/png/468-200.png';
+    }
   }
 
+  // put selected marker in the center of the map
   showCustomMarker() {
-    this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
-
-    let location = new google.maps.LatLng(this.latitude, this.longitude);
-
-    console.log(`selected marker: ${this.selectedMarkerType}`);
-
-    let marker = new google.maps.Marker({
-      position: location,
-      map: this.map,
-      icon: this.iconBase + this.selectedMarkerType,
-      title: 'You ride is here.'
-    });
+    this.latitude = this.map.getCenter().lat();
+    this.longitude = this.map.getCenter().lng();
+    this.putMarker();
   }
 }

@@ -15,10 +15,10 @@
     <div class="col-md-6 col-sm-12 col-xs-12">
       <form class="form-inline" #form="ngForm">
         <div class="form-group">
-          <input type="text" class="form-control" name="latitude" [(ngModel)]="latitude" placeholder="Enter latitude" required>
+          <input type="text" class="form-control" name="latitude" [(ngModel)]="latitude" placeholder="Enter latitude">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" name="longitude" [(ngModel)]="longitude" placeholder="Enter longitude" required>
+          <input type="text" class="form-control" name="longitude" [(ngModel)]="longitude" placeholder="Enter longitude">
         </div>
         <button type="button" (click)="setCenter()" class="btn btn-primary" [disabled]="form.invalid"> Go</button>
 
@@ -30,6 +30,9 @@
         <option *ngFor="let marker of markerTypes" [value]="marker.value">{{marker.text}}</option>
       </select>
       <button type="button" (click)="showCustomMarker()" class="btn btn-primary" [disabled]="form.invalid"> Marker</button>
+      <button type="button" (click)="clearMarkers()" class="btn btn-warning" [disabled]="form.invalid"> Clear Markers</button>
+    </div>
+    <div class="col-md-1 col-sm-12 col-xs-12">
     </div>
   </div>
   <div class="row">
