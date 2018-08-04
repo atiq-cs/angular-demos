@@ -39,6 +39,17 @@ export class AppComponent {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+    this.map.addListener('zoom_changed', () => {
+      console.log("current zoom settings: " + this.map.getZoom());
+      /* fix based on https://developers.google.com/maps/documentation/javascript/markers#convertingtoicon
+       * var image = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      }; */
+    });
     this.putMarker();
   }
 
@@ -58,6 +69,7 @@ export class AppComponent {
       icon: this.getMarkerIcon(),
       title: 'You are here'
     });
+    new google.maps.Marker
     this.markers.push(marker);
   }
 
@@ -73,7 +85,7 @@ export class AppComponent {
   getMarkerIcon(): string {
     let iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
     // convert to int because UI always returns selectedMarkerType as string
-    switch (parseInt(this.selectedMarkerType)) {
+    switch (Number(this.selectedMarkerType)) {
       case 0: return iconBase + 'parking_lot_maps.png';
       case 1: return iconBase + "library_maps.png";
       case 2: return iconBase + 'info-i_maps.png';
